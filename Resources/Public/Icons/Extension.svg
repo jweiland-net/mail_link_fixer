@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <style>.a{fill:#000842;}.b{fill:#f6ae2d;}.c{fill:#fff;}</style>
+  </defs>
+  
+  <rect class="a" width="64" height="64"/>
+  
+  <path class="c" d="M12,18 H52 A4,4 0 0 1 56,22 V42 A4,4 0 0 1 52,46 H12 A4,4 0 0 1 8,42 V22 A4,4 0 0 1 12,18 Z"/>
+  
+  <path class="a" d="M8,22 L32,38 L56,22 L56,26 L32,42 L8,26 Z"/>
+  
+  <path class="b" d="M32,28 L46,32 V42 C46,49 39,54 32,56 C25,54 18,49 18,42 V32 Z"/>
+  
+  <path class="a" d="M26,41 L31,46 L41,33 L38,30 L31,40 L28,37 Z"/>
+</svg>
