@@ -31,6 +31,62 @@ Run the following command within your Composer based TYPO3 project:
 composer require jweiland/resolve-insecure-mail
 ```
 
+### 2.2 Command Usage
+
+The extension registers the following CLI command via the TYPO3 Console:
+
+```bash
+vendor/bin/typo3 mail_link_fixer:fix-spam-email [options]
+```
+
+#### Options
+
+| Option | Short | Description |
+|--------|-------|-------------|
+| `--dry-run` | | Preview changes without writing to the database. |
+| `--uid=<UID>` | | Process only the `tt_content` record with this UID. |
+| `--table=<table>` | `-t` | Specific table to process (default: `tt_content`). |
+| `--field=<field>` | `-f` | Specific field to process (default: `bodytext`). |
+| `--all-rte` | | Scan all tables and fields in TCA configured with `enableRichtext=true`. |
+
+#### Examples
+
+Preview all changes without touching the database:
+
+```bash
+vendor/bin/typo3 mail_link_fixer:fix-spam-email --dry-run
+```
+
+Fix a single record by UID:
+
+```bash
+vendor/bin/typo3 mail_link_fixer:fix-spam-email --uid=42
+```
+
+Process a specific table and field:
+
+```bash
+vendor/bin/typo3 mail_link_fixer:fix-spam-email --table=tx_myext_domain_model_news --field=bodytext
+```
+
+Scan and fix all RTE fields across the entire TCA:
+
+```bash
+vendor/bin/typo3 mail_link_fixer:fix-spam-email --all-rte
+```
+
+Combine `--all-rte` with `--dry-run` for a safe full-site preview:
+
+```bash
+vendor/bin/typo3 mail_link_fixer:fix-spam-email --all-rte --dry-run
+```
+
+Add `-v` for verbose output that shows the number of replacements per record:
+
+```bash
+vendor/bin/typo3 mail_link_fixer:fix-spam-email --all-rte -v
+```
+
 <!-- MARKDOWN LINKS & IMAGES -->
 
 [extension-build-shield]: https://poser.pugx.org/jweiland/mail-link-fixer/v/stable.svg?style=for-the-badge
