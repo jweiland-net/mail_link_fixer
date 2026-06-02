@@ -1,4 +1,4 @@
-# TYPO3 Extension `resolve_unsecure_mail`
+# TYPO3 Extension `mail_link_fixer`
 
 [![Packagist][packagist-logo-stable]][extension-packagist-url]
 [![Latest Stable Version][extension-build-shield]][extension-ter-url]
@@ -28,20 +28,20 @@ The recommended way to install the extension is using Composer.
 Run the following command within your Composer based TYPO3 project:
 
 ```bash
-composer require jweiland/resolve-unsecure-mail
+composer require jweiland/resolve-insecure-mail
 ```
 
 <!-- MARKDOWN LINKS & IMAGES -->
 
-[extension-build-shield]: https://poser.pugx.org/jweiland/resolve-unsecure-mail/v/stable.svg?style=for-the-badge
+[extension-build-shield]: https://poser.pugx.org/jweiland/mail-link-fixer/v/stable.svg?style=for-the-badge
 
-[extension-downloads-badge]: https://poser.pugx.org/jweiland/resolve-unsecure-mail/d/total.svg?style=for-the-badge
+[extension-downloads-badge]: https://poser.pugx.org/jweiland/mail-link-fixer/d/total.svg?style=for-the-badge
 
-[extension-monthly-downloads]: https://poser.pugx.org/jweiland/resolve-unsecure-mail/d/monthly?style=for-the-badge
+[extension-monthly-downloads]: https://poser.pugx.org/jweiland/mail-link-fixer/d/monthly?style=for-the-badge
 
-[extension-ter-url]: https://extensions.typo3.org/extension/resolve_unsecure_mail/
+[extension-ter-url]: https://extensions.typo3.org/extension/mail_link_fixer/
 
-[extension-packagist-url]: https://packagist.org/packages/jweiland/resolve-unsecure-mail/
+[extension-packagist-url]: https://packagist.org/packages/jweiland/mail-link-fixer/
 
 [packagist-logo-stable]: https://img.shields.io/badge/--grey.svg?style=for-the-badge&logo=packagist&logoColor=white
 

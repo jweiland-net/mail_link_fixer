@@ -1,7 +1,7 @@
 {
-	"name": "jweiland/resolve-unsecure-mail",
+	"name": "jweiland/mail-link-fixer",
 	"type": "typo3-cms-extension",
-	"description": "Resolve Unsecure Mail (EXT:resolve_unsecure_mail) - CLI command to fix javascript:linkTo_UnCryptMailto() hrefs in RTE Fields",
+	"description": "Mail Link Fixer (EXT:mail_link_fixer) - CLI command to fix javascript:linkTo_UnCryptMailto() hrefs in RTE Fields",
 	"license": "GPL-2.0-or-later",
 	"authors": [
 		{
@@ -16,12 +16,12 @@
 	},
 	"extra": {
 		"typo3/cms": {
-			"extension-key": "resolve_unsecure_mail"
+			"extension-key": "mail_link_fixer"
 		}
 	},
 	"autoload": {
 		"psr-4": {
-			"JWeiland\\ResolveUnsecureMail\\": "Classes/"
+			"JWeiland\\MailLinkFixer\\": "Classes/"
 		}
 	}
 }

@@ -3,18 +3,18 @@
 declare(strict_types=1);
 
 /*
- * This file is part of the package jweiland/resolve-unsecure-mail.
+ * This file is part of the package jweiland/mail-link-fixer.
  *
  * For the full copyright and license information, please read the
  * LICENSE file that was distributed with this source code.
  */
 
-namespace JWeiland\ResolveUnsecureMail\Command;
+namespace JWeiland\MailLinkFixer\Command;
 
 use Doctrine\DBAL\Exception;
-use JWeiland\ResolveUnsecureMail\Domain\Repository\LegacyLinkRepository;
-use JWeiland\ResolveUnsecureMail\Service\EmailMigrationService;
-use JWeiland\ResolveUnsecureMail\Service\TcaScannerService;
+use JWeiland\MailLinkFixer\Domain\Repository\LegacyLinkRepository;
+use JWeiland\MailLinkFixer\Service\EmailMigrationService;
+use JWeiland\MailLinkFixer\Service\TcaScannerService;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -26,7 +26,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
  * Fixes <a href="javascript:linkTo_UnCryptMailto('...')"> links stored in RTE fields.
  */
 #[AsCommand(
-    name: 'resolve_unsecure_mail:fix-spam-email',
+    name: 'mail_link_fixer:fix-spam-email',
     description: 'A command that fixes spam protected email links in RTE fields.',
 )]
 final class FixSpamProtectedEmailCommand extends Command

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace JWeiland\ResolveUnsecureMail\Domain\Repository;
+namespace JWeiland\MailLinkFixer\Domain\Repository;
 
 use Doctrine\DBAL\Exception;
 use TYPO3\CMS\Core\Database\Connection;
