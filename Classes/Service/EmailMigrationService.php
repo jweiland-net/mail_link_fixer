@@ -18,7 +18,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 final readonly class EmailMigrationService
 {
-    private const string PATTERN_A_TAG = '/<a\s[^>]*href\s*=\s*["\']javascript:linkTo_UnCryptMailto\(\'([^\']+)\'\)[^>]*>(.*?)<\/a>/is';
+    private const PATTERN_A_TAG = '/<a\s[^>]*href\s*=\s*["\']javascript:linkTo_UnCryptMailto\(\'([^\']+)\'\)[^>]*>(.*?)<\/a>/is';
 
     public function fixBodyText(string $bodytext, array &$changes): string
     {
