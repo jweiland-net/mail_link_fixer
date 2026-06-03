@@ -16,8 +16,10 @@
 		"typo3/cms-core": "^13.4 || ^14.3"
 	},
 	"require-dev": {
-		"typo3/testing-framework": "^8.2",
-		"phpunit/phpunit": "^10.5"
+		"ergebnis/composer-normalize": "^2.44",
+		"ssch/typo3-rector": "^3.6",
+		"typo3/coding-standards": "^0.8",
+		"typo3/testing-framework": "^9.2.0"
 	},
 	"autoload": {
 		"psr-4": {
@@ -33,5 +35,15 @@
 		"typo3/cms": {
 			"extension-key": "mail_link_fixer"
 		}
+	},
+	"config": {
+		"allow-plugins": {
+			"ergebnis/composer-normalize": true,
+			"typo3/class-alias-loader": true,
+			"typo3/cms-composer-installers": true
+		},
+		"bin-dir": ".Build/bin",
+		"sort-packages": true,
+		"vendor-dir": ".Build/vendor"
 	}
 }
