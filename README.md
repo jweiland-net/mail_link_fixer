@@ -4,9 +4,10 @@
 [![Latest Stable Version][extension-build-shield]][extension-ter-url]
 [![Total Downloads][extension-downloads-badge]][extension-packagist-url]
 [![Monthly Downloads][extension-monthly-downloads]][extension-packagist-url]
-[![TYPO3 13.4][TYPO3-shield]][TYPO3-13-url]
+[![TYPO3 13.4][TYPO3-13-shield]][TYPO3-13-url]
+[![TYPO3 14.3][TYPO3-14-shield]][TYPO3-14-url]
 
-![Build Status][exttunnension-ci-shield]
+![Build Status](https://github.com/jweiland-net/mail_link_fixer/actions/workflows/ci.yml/badge.svg)
 
 This extension provides a CLI command to migrate legacy `javascript:linkTo_UnCryptMailto()` links in the database into standard `mailto:` links, allowing modern TYPO3 versions (v12/v13) to natively handle frontend spam protection.
 
@@ -27,8 +28,8 @@ The recommended way to install the extension is using Composer.
 
 Run the following command within your Composer based TYPO3 project:
 
-```bash
-composer require jweiland/resolve-insecure-mail
+```
+composer require jweiland/mail-link-fixer
 ```
 
 ### 2.2 Command Usage
@@ -103,4 +104,8 @@ vendor/bin/typo3 mail_link_fixer:fix-spam-email --all-rte -v
 
 [TYPO3-13-url]: https://get.typo3.org/version/13
 
-[TYPO3-shield]: https://img.shields.io/badge/TYPO3-13.4-green.svg?style=for-the-badge&logo=typo3
+[TYPO3-13-shield]: https://img.shields.io/badge/TYPO3-13.4-green.svg?style=for-the-badge&logo=typo3
+
+[TYPO3-14-url]: https://get.typo3.org/version/14
+
+[TYPO3-14-shield]: https://img.shields.io/badge/TYPO3-14.3-green.svg?style=for-the-badge&logo=typo3
