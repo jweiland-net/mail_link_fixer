@@ -45,8 +45,8 @@ final class LegacyLinkRepositoryTest extends FunctionalTestCase
         // uid 1 and 3 contain the pattern; uid 4 is deleted (excluded by DeletedRestriction)
         self::assertCount(2, $records);
         $uids = array_column($records, 'uid');
-        self::assertContains(1, array_map('intval', $uids));
-        self::assertContains(3, array_map('intval', $uids));
+        self::assertContains(1, array_map(intval(...), $uids));
+        self::assertContains(3, array_map(intval(...), $uids));
     }
 
     #[Test]
@@ -56,7 +56,7 @@ final class LegacyLinkRepositoryTest extends FunctionalTestCase
 
         $records = $subject->findRecordsWithObsoleteLinks('tt_content', 'bodytext', null);
 
-        $uids = array_map('intval', array_column($records, 'uid'));
+        $uids = array_map(intval(...), array_column($records, 'uid'));
         self::assertNotContains(4, $uids, 'Deleted record (uid=4) must not be returned');
     }
 
