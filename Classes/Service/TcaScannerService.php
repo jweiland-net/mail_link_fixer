@@ -20,6 +20,9 @@ final readonly class TcaScannerService
 {
     public function __construct(private TcaSchemaFactory $tcaSchemaFactory) {}
 
+    /**
+     * @return array<string, string[]>
+     */
     public function findAllRteAndTextFields(): array
     {
         $targets = [];

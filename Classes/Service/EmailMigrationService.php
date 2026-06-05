@@ -20,6 +20,9 @@ final readonly class EmailMigrationService
 {
     private const PATTERN_A_TAG = '/<a\s[^>]*href\s*=\s*["\']javascript:linkTo_UnCryptMailto\(\'([^\']+)\'\)[^>]*>(.*?)<\/a>/is';
 
+    /**
+     * @param array<int, array{encoded: string, decoded: mixed, result: string}> $changes
+     */
     public function fixBodyText(string $bodytext, array &$changes): string
     {
         return preg_replace_callback(

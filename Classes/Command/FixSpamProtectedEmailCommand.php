@@ -132,6 +132,9 @@ final class FixSpamProtectedEmailCommand extends Command
         return Command::SUCCESS;
     }
 
+    /**
+     * @return array<string, string[]>
+     */
     private function getTargetFields(InputInterface $input): array
     {
         if ($input->getOption('all-rte')) {

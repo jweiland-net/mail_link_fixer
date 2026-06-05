@@ -26,6 +26,7 @@ final readonly class LegacyLinkRepository
 
     /**
      * @throws Exception
+     * @return array<int, array<string, mixed>>
      */
     public function findRecordsWithObsoleteLinks(string $tableName, string $fieldName, ?int $limitUid): array
     {
