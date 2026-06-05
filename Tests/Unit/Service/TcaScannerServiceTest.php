@@ -15,7 +15,9 @@ use JWeiland\MailLinkFixer\Service\TcaScannerService;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use TYPO3\CMS\Core\Schema\Field\FieldCollection;
 use TYPO3\CMS\Core\Schema\Field\FieldTypeInterface;
+use TYPO3\CMS\Core\Schema\SchemaCollection;
 use TYPO3\CMS\Core\Schema\TcaSchema;
 use TYPO3\CMS\Core\Schema\TcaSchemaFactory;
 
@@ -33,7 +35,7 @@ final class TcaScannerServiceTest extends TestCase
     #[Test]
     public function findAllRteAndTextFieldsReturnsEmptyArrayWhenNoTablesRegistered(): void
     {
-        $this->tcaSchemaFactory->method('all')->willReturn(new \ArrayIterator([]));
+        $this->tcaSchemaFactory->method('all')->willReturn(new SchemaCollection([]));
 
         $result = $this->subject->findAllRteAndTextFields();
 
@@ -46,7 +48,7 @@ final class TcaScannerServiceTest extends TestCase
         $rteField = $this->createFieldMock('bodytext', ['enableRichtext' => true, 'type' => 'text']);
         $schema = $this->createSchemaMock('tt_content', [$rteField]);
 
-        $this->tcaSchemaFactory->method('all')->willReturn(new \ArrayIterator([$schema]));
+        $this->tcaSchemaFactory->method('all')->willReturn(new SchemaCollection(['tt_content' => $schema]));
 
         $result = $this->subject->findAllRteAndTextFields();
 
@@ -60,7 +62,7 @@ final class TcaScannerServiceTest extends TestCase
         $textField = $this->createFieldMock('description', ['type' => 'text']);
         $schema = $this->createSchemaMock('tx_myext_domain_model_article', [$textField]);
 
-        $this->tcaSchemaFactory->method('all')->willReturn(new \ArrayIterator([$schema]));
+        $this->tcaSchemaFactory->method('all')->willReturn(new SchemaCollection(['tx_myext_domain_model_article' => $schema]));
 
         $result = $this->subject->findAllRteAndTextFields();
 
@@ -74,7 +76,7 @@ final class TcaScannerServiceTest extends TestCase
         $inputField = $this->createFieldMock('title', ['type' => 'input']);
         $schema = $this->createSchemaMock('tt_content', [$inputField]);
 
-        $this->tcaSchemaFactory->method('all')->willReturn(new \ArrayIterator([$schema]));
+        $this->tcaSchemaFactory->method('all')->willReturn(new SchemaCollection(['tt_content' => $schema]));
 
         $result = $this->subject->findAllRteAndTextFields();
 
@@ -90,7 +92,10 @@ final class TcaScannerServiceTest extends TestCase
         $schema1 = $this->createSchemaMock('tt_content', [$rteField]);
         $schema2 = $this->createSchemaMock('tx_myext_domain_model_news', [$textField]);
 
-        $this->tcaSchemaFactory->method('all')->willReturn(new \ArrayIterator([$schema1, $schema2]));
+        $this->tcaSchemaFactory->method('all')->willReturn(new SchemaCollection([
+            'tt_content' => $schema1,
+            'tx_myext_domain_model_news' => $schema2,
+        ]));
 
         $result = $this->subject->findAllRteAndTextFields();
 
@@ -106,7 +111,7 @@ final class TcaScannerServiceTest extends TestCase
         $nonRteField = $this->createFieldMock('bodytext', ['enableRichtext' => false, 'type' => 'input']);
         $schema = $this->createSchemaMock('tt_content', [$nonRteField]);
 
-        $this->tcaSchemaFactory->method('all')->willReturn(new \ArrayIterator([$schema]));
+        $this->tcaSchemaFactory->method('all')->willReturn(new SchemaCollection(['tt_content' => $schema]));
 
         $result = $this->subject->findAllRteAndTextFields();
 
@@ -129,7 +134,11 @@ final class TcaScannerServiceTest extends TestCase
     {
         $schema = $this->createMock(TcaSchema::class);
         $schema->method('getName')->willReturn($tableName);
-        $schema->method('getFields')->willReturn(new \ArrayIterator($fields));
+        $fieldsByName = [];
+        foreach ($fields as $field) {
+            $fieldsByName[$field->getName()] = $field;
+        }
+        $schema->method('getFields')->willReturn(new FieldCollection($fieldsByName));
         return $schema;
     }
 }

@@ -75,8 +75,8 @@ final class EmailMigrationServiceTest extends TestCase
     #[Test]
     public function fixBodyTextFixesSingleLegacyLinkWithOffset3(): void
     {
-        // mailto:admin@test.org encrypted with offset 3 = pdorwr-dgplqCwhvw1ruj
-        $input = '<a href="javascript:linkTo_UnCryptMailto(\'pdorwr-dgplqCwhvw1ruj\')">admin@test.org</a>';
+        // mailto:admin@test.org encrypted with offset 3 = pdlowr-dgplqCwhvw1ruj
+        $input = '<a href="javascript:linkTo_UnCryptMailto(\'pdlowr-dgplqCwhvw1ruj\')">admin@test.org</a>';
         $changes = [];
 
         $result = $this->subject->fixBodyText($input, $changes);
@@ -93,7 +93,7 @@ final class EmailMigrationServiceTest extends TestCase
         $input = implode(' ', [
             '<a href="javascript:linkTo_UnCryptMailto(\'nbjmup+jogpAfybnqmf/dpn\')">info@example.com</a>',
             'and',
-            '<a href="javascript:linkTo_UnCryptMailto(\'pdorwr-dgplqCwhvw1ruj\')">admin@test.org</a>',
+            '<a href="javascript:linkTo_UnCryptMailto(\'pdlowr-dgplqCwhvw1ruj\')">admin@test.org</a>',
         ]);
         $changes = [];
 

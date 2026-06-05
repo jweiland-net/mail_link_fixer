@@ -1,6 +1,6 @@
 "tt_content"
-"uid","pid","bodytext","deleted","hidden","CType","sys_language_uid","l18n_parent","t3ver_wsid","t3ver_state","t3ver_stage","sorting"
-1,1,"<a href=""javascript:linkTo_UnCryptMailto('nbjmup+jogpAfybnqmf/dpn')"">info@example.com</a>",0,0,"text",0,0,0,0,0,0
-2,1,"<p>No legacy links here. Plain content only.</p>",0,0,"text",0,0,0,0,0,0
-3,1,"<a href=""javascript:linkTo_UnCryptMailto('pdorwr-dgplqCwhvw1ruj')"">admin@test.org</a>",0,0,"text",0,0,0,0,0,0
-4,1,"<a href=""javascript:linkTo_UnCryptMailto('nbjmup+jogpAfybnqmf/dpn')"">info@example.com</a>",1,0,"text",0,0,0,0,0,0
+,"uid","pid","bodytext","deleted","hidden","CType","sys_language_uid","l18n_parent","t3ver_wsid","t3ver_state","t3ver_stage","sorting"
+,1,1,"<a href=""javascript:linkTo_UnCryptMailto('nbjmup+jogpAfybnqmf/dpn')"">info@example.com</a>",0,0,"text",0,0,0,0,0,0
+,2,1,"<p>No legacy links here. Plain content only.</p>",0,0,"text",0,0,0,0,0,0
+,3,1,"<a href=""javascript:linkTo_UnCryptMailto('pdlowr-dgplqCwhvw1ruj')"">admin@test.org</a>",0,0,"text",0,0,0,0,0,0
+,4,1,"<a href=""javascript:linkTo_UnCryptMailto('nbjmup+jogpAfybnqmf/dpn')"">info@example.com</a>",1,0,"text",0,0,0,0,0,0
