@@ -36,7 +36,7 @@ final class TcaScannerServiceTest extends TestCase
     public function findAllRteAndTextFieldsReturnsEmptyArrayWhenNoTablesRegistered(): void
     {
         $this->tcaSchemaFactory
-            ->expects(self::atLeastOnce())->method('all')
+            ->expects($this->atLeastOnce())->method('all')
             ->willReturn(new SchemaCollection([]));
 
         $result = $this->subject->findAllRteAndTextFields();
@@ -50,8 +50,8 @@ final class TcaScannerServiceTest extends TestCase
         $rteField = $this->createFieldMock('bodytext', ['enableRichtext' => true, 'type' => 'text']);
         $schema = $this->createSchemaMock('tt_content', [$rteField]);
 
-        $this->tcaSchemaFactory->expects(self::atLeastOnce())->method('all')->willReturn(
-            new SchemaCollection(['tt_content' => $schema])
+        $this->tcaSchemaFactory->expects($this->atLeastOnce())->method('all')->willReturn(
+            new SchemaCollection(['tt_content' => $schema]),
         );
 
         $result = $this->subject->findAllRteAndTextFields();
@@ -66,8 +66,8 @@ final class TcaScannerServiceTest extends TestCase
         $textField = $this->createFieldMock('description', ['type' => 'text']);
         $schema = $this->createSchemaMock('tx_myext_domain_model_article', [$textField]);
 
-        $this->tcaSchemaFactory->expects(self::atLeastOnce())->method('all')->willReturn(
-            new SchemaCollection(['tx_myext_domain_model_article' => $schema])
+        $this->tcaSchemaFactory->expects($this->atLeastOnce())->method('all')->willReturn(
+            new SchemaCollection(['tx_myext_domain_model_article' => $schema]),
         );
 
         $result = $this->subject->findAllRteAndTextFields();
@@ -82,8 +82,8 @@ final class TcaScannerServiceTest extends TestCase
         $inputField = $this->createFieldMock('title', ['type' => 'input']);
         $schema = $this->createSchemaMock('tt_content', [$inputField]);
 
-        $this->tcaSchemaFactory->expects(self::atLeastOnce())->method('all')->willReturn(
-            new SchemaCollection(['tt_content' => $schema])
+        $this->tcaSchemaFactory->expects($this->atLeastOnce())->method('all')->willReturn(
+            new SchemaCollection(['tt_content' => $schema]),
         );
 
         $result = $this->subject->findAllRteAndTextFields();
@@ -100,7 +100,7 @@ final class TcaScannerServiceTest extends TestCase
         $schema1 = $this->createSchemaMock('tt_content', [$rteField]);
         $schema2 = $this->createSchemaMock('tx_myext_domain_model_news', [$textField]);
 
-        $this->tcaSchemaFactory->expects(self::atLeastOnce())->method('all')->willReturn(new SchemaCollection([
+        $this->tcaSchemaFactory->expects($this->atLeastOnce())->method('all')->willReturn(new SchemaCollection([
             'tt_content' => $schema1,
             'tx_myext_domain_model_news' => $schema2,
         ]));
@@ -119,8 +119,8 @@ final class TcaScannerServiceTest extends TestCase
         $nonRteField = $this->createFieldMock('bodytext', ['enableRichtext' => false, 'type' => 'input']);
         $schema = $this->createSchemaMock('tt_content', [$nonRteField]);
 
-        $this->tcaSchemaFactory->expects(self::atLeastOnce())->method('all')->willReturn(
-            new SchemaCollection(['tt_content' => $schema])
+        $this->tcaSchemaFactory->expects($this->atLeastOnce())->method('all')->willReturn(
+            new SchemaCollection(['tt_content' => $schema]),
         );
 
         $result = $this->subject->findAllRteAndTextFields();
@@ -131,20 +131,20 @@ final class TcaScannerServiceTest extends TestCase
     private function createFieldMock(string $fieldName, array $config): FieldTypeInterface&MockObject
     {
         $field = $this->createMock(FieldTypeInterface::class);
-        $field->expects(self::atLeastOnce())->method('getName')->willReturn($fieldName);
-        $field->expects(self::atLeastOnce())->method('getConfiguration')->willReturn($config);
+        $field->expects($this->atLeastOnce())->method('getName')->willReturn($fieldName);
+        $field->expects($this->atLeastOnce())->method('getConfiguration')->willReturn($config);
         return $field;
     }
 
     private function createSchemaMock(string $tableName, array $fields): TcaSchema&MockObject
     {
         $schema = $this->createMock(TcaSchema::class);
-        $schema->expects(self::atLeastOnce())->method('getName')->willReturn($tableName);
+        $schema->expects($this->atLeastOnce())->method('getName')->willReturn($tableName);
         $fieldsByName = [];
         foreach ($fields as $field) {
             $fieldsByName[$field->getName()] = $field;
         }
-        $schema->expects(self::atLeastOnce())->method('getFields')->willReturn(new FieldCollection($fieldsByName));
+        $schema->expects($this->atLeastOnce())->method('getFields')->willReturn(new FieldCollection($fieldsByName));
 
         return $schema;
     }
