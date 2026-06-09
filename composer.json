@@ -45,5 +45,8 @@
 		"bin-dir": ".Build/bin",
 		"sort-packages": true,
 		"vendor-dir": ".Build/vendor"
+	},
+	"replace": {
+		"typo3-ter/mail-link-fixer": "self.version"
 	}
 }
