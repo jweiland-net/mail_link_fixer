@@ -128,10 +128,6 @@ final class TcaScannerServiceTest extends TestCase
         self::assertSame([], $result);
     }
 
-    // -----------------------------------------------------------------------
-    // Helpers
-    // -----------------------------------------------------------------------
-
     private function createFieldMock(string $fieldName, array $config): FieldTypeInterface&MockObject
     {
         $field = $this->createMock(FieldTypeInterface::class);
