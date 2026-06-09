@@ -27,18 +27,10 @@ final class LegacyLinkRepositoryTest extends FunctionalTestCase
         $this->importCSVDataSet(__DIR__ . '/../../Fixtures/Database/tt_content.csv');
     }
 
-    private function getSubject(): LegacyLinkRepository
-    {
-        return GeneralUtility::makeInstance(
-            LegacyLinkRepository::class,
-            GeneralUtility::makeInstance(ConnectionPool::class),
-        );
-    }
-
     #[Test]
     public function findRecordsWithObsoleteLinksReturnsRecordsContainingLegacyLinks(): void
     {
-        $subject = $this->getSubject();
+        $subject = $this->get(LegacyLinkRepository::class);
 
         $records = $subject->findRecordsWithObsoleteLinks('tt_content', 'bodytext', null);
 
@@ -52,7 +44,7 @@ final class LegacyLinkRepositoryTest extends FunctionalTestCase
     #[Test]
     public function findRecordsWithObsoleteLinksDoesNotReturnDeletedRecords(): void
     {
-        $subject = $this->getSubject();
+        $subject = $this->get(LegacyLinkRepository::class);
 
         $records = $subject->findRecordsWithObsoleteLinks('tt_content', 'bodytext', null);
 
@@ -63,7 +55,7 @@ final class LegacyLinkRepositoryTest extends FunctionalTestCase
     #[Test]
     public function findRecordsWithObsoleteLinksReturnsEmptyArrayWhenNoPatternFound(): void
     {
-        $subject = $this->getSubject();
+        $subject = $this->get(LegacyLinkRepository::class);
 
         // uid=2 has no legacy link pattern, so if we restrict to uid=2 we get nothing
         $records = $subject->findRecordsWithObsoleteLinks('tt_content', 'bodytext', 2);
@@ -74,7 +66,7 @@ final class LegacyLinkRepositoryTest extends FunctionalTestCase
     #[Test]
     public function findRecordsWithObsoleteLinksByUidReturnsSingleRecord(): void
     {
-        $subject = $this->getSubject();
+        $subject = $this->get(LegacyLinkRepository::class);
 
         $records = $subject->findRecordsWithObsoleteLinks('tt_content', 'bodytext', 1);
 
@@ -85,7 +77,7 @@ final class LegacyLinkRepositoryTest extends FunctionalTestCase
     #[Test]
     public function findRecordsWithObsoleteLinksReturnsFieldValueInResult(): void
     {
-        $subject = $this->getSubject();
+        $subject = $this->get(LegacyLinkRepository::class);
 
         $records = $subject->findRecordsWithObsoleteLinks('tt_content', 'bodytext', 1);
 
@@ -96,7 +88,7 @@ final class LegacyLinkRepositoryTest extends FunctionalTestCase
     #[Test]
     public function updateRecordFieldWritesNewValueToDatabase(): void
     {
-        $subject = $this->getSubject();
+        $subject = $this->get(LegacyLinkRepository::class);
         $newValue = '<a href="mailto:info@example.com">info@example.com</a>';
 
         $subject->updateRecordField('tt_content', 'bodytext', 1, $newValue);
@@ -111,7 +103,7 @@ final class LegacyLinkRepositoryTest extends FunctionalTestCase
     #[Test]
     public function updateRecordFieldDoesNotAffectOtherRecords(): void
     {
-        $subject = $this->getSubject();
+        $subject = $this->get(LegacyLinkRepository::class);
         $newValue = '<a href="mailto:info@example.com">info@example.com</a>';
 
         $subject->updateRecordField('tt_content', 'bodytext', 1, $newValue);

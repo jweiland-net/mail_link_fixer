@@ -17,9 +17,6 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-/**
- * Repository responsible for fetching and updating records containing legacy spam-protected links.
- */
 final readonly class LegacyLinkRepository
 {
     public function __construct(private ConnectionPool $connectionPool) {}
@@ -30,9 +27,10 @@ final readonly class LegacyLinkRepository
      */
     public function findRecordsWithObsoleteLinks(string $tableName, string $fieldName, ?int $limitUid): array
     {
+        $this->assertTableAndColumnExist($tableName, $fieldName);
+
         $queryBuilder = $this->connectionPool->getQueryBuilderForTable($tableName);
 
-        // Safely apply soft-delete restrictions based on TCA schema
         $queryBuilder->getRestrictions()
             ->removeAll()
             ->add(GeneralUtility::makeInstance(DeletedRestriction::class));
@@ -61,6 +59,8 @@ final readonly class LegacyLinkRepository
      */
     public function updateRecordField(string $tableName, string $fieldName, int $uid, string $newValue): void
     {
+        $this->assertTableAndColumnExist($tableName, $fieldName);
+
         $this->connectionPool
             ->getConnectionForTable($tableName)
             ->update(
@@ -68,5 +68,27 @@ final readonly class LegacyLinkRepository
                 [$fieldName => $newValue],
                 ['uid' => $uid],
             );
+    }
+
+    private function assertTableAndColumnExist(string $tableName, string $fieldName): void
+    {
+        $connection = $this->connectionPool->getConnectionForTable($tableName);
+        $schemaManager = $connection->createSchemaManager();
+
+        try {
+            $table = $schemaManager->introspectTable($tableName);
+        } catch (Exception $e) {
+            throw new \InvalidArgumentException(
+                sprintf('Table "%s" does not exist in the database schema.', $tableName),
+                1748505600,
+            );
+        }
+
+        if (!$table->hasColumn($fieldName)) {
+            throw new \InvalidArgumentException(
+                sprintf('Column "%s" does not exist in table "%s".', $fieldName, $tableName),
+                1748505601,
+            );
+        }
     }
 }
