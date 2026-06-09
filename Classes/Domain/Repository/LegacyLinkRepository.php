@@ -77,7 +77,7 @@ final readonly class LegacyLinkRepository
 
         try {
             $table = $schemaManager->introspectTable($tableName);
-        } catch (Exception $e) {
+        } catch (Exception) {
             throw new \InvalidArgumentException(
                 sprintf('Table "%s" does not exist in the database schema.', $tableName),
                 1748505600,
